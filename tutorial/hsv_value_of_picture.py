@@ -4,8 +4,11 @@ from matplotlib import pyplot as plt
 
 
 dataset_dir = os.path.abspath("/Users/heetop/Desktop/Dataset")
+if os.path.isdir(dataset_dir)==False:
+    dataset_dir = os.path.abspath("C:/Users/knyup/OneDrive/SW_Mae/Camcha/Dataset")
 
 image_path=os.path.join(dataset_dir,"images/white/bright_white_spot_1.jpg")
+
 
 white_image=cv2.imread(image_path)
 white_image=cv2.resize(white_image,(540,960))

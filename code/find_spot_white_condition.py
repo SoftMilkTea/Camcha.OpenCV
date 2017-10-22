@@ -13,6 +13,8 @@ image_path=os.path.join(dataset_dir,"images/white/bright_white_spot_3.jpg")
 white_image=cv2.imread(image_path)
 white_image=cv2.resize(white_image,(540,960))
 
+
+#=====================Blob==============================================================
 # Setup SimpleBlobDetector parameters.
 params = cv2.SimpleBlobDetector_Params()
 
@@ -40,6 +42,9 @@ params.minInertiaRatio = 0.01
 detector = cv2.SimpleBlobDetector_create(params)
 
 
+
+
+#=====================hsv==============================================================
 hsv = cv2.cvtColor(white_image,cv2.COLOR_BGR2HSV)
 
 # lower_red = cv.Scalar(-1, 150, 100)
