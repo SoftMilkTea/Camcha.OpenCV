@@ -74,7 +74,7 @@ while(True):
 
 
     # Output Part
-    cv2.imshow("Original",white_image)
+    cv2.imshow("Original",im_wit_keypoints_dilate)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
