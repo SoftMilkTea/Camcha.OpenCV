@@ -2,6 +2,19 @@ import cv2
 import os
 import numpy as np
 
+def filting_red_by_HSV(image):
+    hsv = cv2.cvtColor(image,cv2.COLOR_BGR2HSV)
+
+    # lower_red = cv.Scalar(-1, 150, 100)
+    # upper_red = cv.Scalar(1, 255, 255)
+    lower_red = np.array([-10,150,150])
+    upper_red = np.array([10,255,255])
+
+    mask_red = cv2.inRange(hsv, lower_red, upper_red)
+
+    red_HSV = cv2.bitwise_and(image, image, mask= mask_red)
+    return red_HSV
+
 
 
 dataset_dir = os.path.abspath("/Users/heetop/Desktop/Dataset")
@@ -12,27 +25,15 @@ image_path=os.path.join(dataset_dir,"images/white/bright_white_spot_1.jpg")
 white_image=cv2.imread(image_path)
 white_image=cv2.resize(white_image,(540,960))
 
-cv2.imshow("Original",white_image)
+
+
 
 #1. HSV - Finding Red Color
-hsv = cv2.cvtColor(white_image,cv2.COLOR_BGR2HSV)
-
-# lower_red = cv.Scalar(-1, 150, 100)
-# upper_red = cv.Scalar(1, 255, 255)
-lower_red = np.array([-10,150,150])
-upper_red = np.array([10,255,255])
-
-mask_red = cv2.inRange(hsv, lower_red, upper_red)
-
-res = cv2.bitwise_and(white_image, white_image, mask= mask_red)
-
-cv2.imshow("HSV applied",res)
+red_HSV = filting_red_by_HSV(white_image)
 
 
-
-#2. Dilate - make spot be larger 
-dilate = cv2.dilate(res,None,iterations=1)
-
+#2-Heetop. Dilate - make spot be larger 
+dilate = cv2.dilate(red_HSV,None,iterations=1)
 
 
 #3. Blob - Finding circle
@@ -60,14 +61,17 @@ params.blobColor = 255
 
 
 detector = cv2.SimpleBlobDetector_create(params)
-keypoints = detector.detect(dilate)
-im_wit_keypoints = cv2.drawKeypoints(dilate,keypoints,np.array([]),(255,0,0),cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)
+keypoints_dilate = detector.detect(dilate)
+
+im_wit_keypoints_dilate = cv2.drawKeypoints(white_image,keypoints_dilate,np.array([]),(255,0,0),cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)
 
 
 
 
 # Output Part
+cv2.imshow("Original",white_image)
+cv2.imshow("HSV applied",red_HSV)
 cv2.imshow("Dilate applied",dilate)
-cv2.imshow("Blob applied",im_wit_keypoints)
+cv2.imshow("Blob applied on Dilate",im_wit_keypoints_dilate)
 cv2.waitKey(0)
 
