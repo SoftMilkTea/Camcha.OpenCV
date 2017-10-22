@@ -32,7 +32,7 @@ white_image=cv2.resize(white_image,(540,960))
 red_HSV = filting_red_by_HSV(white_image)
 
 
-#2-Heetop. Dilate - make spot be larger 
+#2-Heetop. Dilate - make spot be larger
 dilate = cv2.dilate(red_HSV,None,iterations=1)
 
 
