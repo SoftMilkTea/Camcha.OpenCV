@@ -7,7 +7,7 @@ dataset_dir = os.path.abspath("/Users/heetop/Desktop/Dataset")
 if os.path.isdir(dataset_dir)==False:
     dataset_dir = os.path.abspath("C:/Users/knyup/OneDrive/SW_Mae/Camcha/Dataset")
 
-save_path=os.path.join(dataset_dir,"videos/white/bright_white_spot_4.avi")
+save_path=os.path.join(dataset_dir,"videos/white/bright_white_spot_5.avi")
 # video start
 
 cap = cv2.VideoCapture(0)
