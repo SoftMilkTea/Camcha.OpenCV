@@ -2,7 +2,11 @@ import cv2
 import os
 import numpy as np
 
+
+
 dataset_dir = os.path.abspath("/Users/heetop/Desktop/Dataset")
+if os.path.isdir(dataset_dir)==False:
+    dataset_dir = os.path.abspath("C:/Users/knyup/OneDrive/SW_Mae/Camcha/Dataset")
 
 image_path=os.path.join(dataset_dir,"images/white/bright_white_spot_3.jpg")
 
