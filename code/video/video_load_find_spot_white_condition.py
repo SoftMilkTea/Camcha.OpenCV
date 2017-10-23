@@ -18,11 +18,11 @@ dataset_dir = os.path.abspath("/Users/heetop/Desktop/Dataset")
 if os.path.isdir(dataset_dir)==False:
     dataset_dir = os.path.abspath("C:/Users/knyup/OneDrive/SW_Mae/Camcha/Dataset")
 
-video_path=os.path.join(dataset_dir,"videos/white/bright_white_spot_6.avi")
+video_path=os.path.join(dataset_dir,"videos/white/bright_white_spot_9.mp4")
+
 
 # video load
 cap = cv2.VideoCapture(video_path)
-
 
 
 # Set parameters
@@ -56,7 +56,7 @@ detector = cv2.SimpleBlobDetector_create(params)
 while(cap.isOpened()):
 
     ret, white_image = cap.read()
-
+    white_image = cv2.resize(white_image,(960,540))
 
     #1. HSV - Finding Red Color
     red_HSV = filting_red_by_HSV(white_image)
