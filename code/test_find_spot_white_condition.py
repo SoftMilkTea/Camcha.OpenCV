@@ -7,7 +7,7 @@ def filting_red_by_HSV(image):
 
     # lower_red = cv.Scalar(-1, 150, 100)
     # upper_red = cv.Scalar(1, 255, 255)
-    lower_red = np.array([170,165,200])
+    lower_red = np.array([170,165,240])
     upper_red = np.array([180,255,255])
 
     mask_red = cv2.inRange(hsv, lower_red, upper_red)
@@ -65,7 +65,10 @@ keypoints_dilate = detector.detect(dilate)
 for i in range(len(keypoints_dilate)):
     x = keypoints_dilate[i].pt[0] # x axis
     y = keypoints_dilate[i].pt[1] # y axis
+    x=int(x)
+    y=int(y)
     print(hsv[int(y),int(x)])
+    cv2.circle(white_image, (x,y), 10, (0, 255, 0), 2)
 
 
 im_wit_keypoints_dilate = cv2.drawKeypoints(white_image,keypoints_dilate,np.array([]),(255,0,0),cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)

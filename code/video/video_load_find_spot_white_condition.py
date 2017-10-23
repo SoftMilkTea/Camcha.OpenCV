@@ -5,7 +5,7 @@ import numpy as np
 def filting_red_by_HSV(image):
     hsv = cv2.cvtColor(image,cv2.COLOR_BGR2HSV)
 
-    lower_red = np.array([170,150,190])
+    lower_red = np.array([170,200,240])
     upper_red = np.array([180,255,255])
 
     mask_red = cv2.inRange(hsv, lower_red, upper_red)
@@ -18,7 +18,7 @@ dataset_dir = os.path.abspath("/Users/heetop/Desktop/Dataset")
 if os.path.isdir(dataset_dir)==False:
     dataset_dir = os.path.abspath("C:/Users/knyup/OneDrive/SW_Mae/Camcha/Dataset")
 
-video_path=os.path.join(dataset_dir,"videos/white/bright_white_spot_5.avi")
+video_path=os.path.join(dataset_dir,"videos/white/bright_white_spot_6.avi")
 
 # video load
 cap = cv2.VideoCapture(video_path)
